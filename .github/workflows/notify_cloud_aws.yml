@@ -17,13 +17,7 @@
 # under the License.
 #
 
-# Intentionally has a general name.
-# because the test status check created in GitHub Actions
-# currently randomly picks any associated workflow.
-# So, the name was changed to make sense in that context too.
-# See also https://github.community/t/specify-check-suite-when-creating-a-checkrun/118380/10
-
-name: "PR update"
+name: "PR update for Cloud-AWS"
 
 # Security: `pull_request_target` events can be risky, but we:
 # 1. Only grant write access for checks (a.k.a. check runs).
@@ -33,15 +27,20 @@ name: "PR update"
 on:
   pull_request_target:
     types: [opened, reopened, synchronize]
+    paths:
+      - 'hadoop-tools/hadoop-aws/**'
+      - '.github/workflows/*cloud_aws.yml'
+      - '.github/actions/build_image**'
+      - '.github/gha-tests/hadoop-aws*excludes.txt'
 
 jobs:
   notify:
-    name: "Notify Test Workflow"
+    name: "Notify Cloud-AWS"
     permissions:
       actions: read
       checks: write
     uses: ./.github/workflows/tmpl_notify_fork_run.yml
     with:
-      source_workflow_id: build_and_test.yml
-      upstream_check_name: Build
-      details_check_run_name: Run / Preparation
+      source_workflow_id: cloud_aws.yml
+      upstream_check_name: S3A Test Summary
+      details_check_run_name: Run / precondition
