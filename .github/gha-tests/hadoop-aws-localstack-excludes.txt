@@ -23,7 +23,7 @@
 # TODO see if we can enable any of these...
 
 # tests that depend on public S3 buckets
-**/org/apache/hadoop/fs/s3a/scale/ITestS3AInputStreamPerformance.java
+#**/org/apache/hadoop/fs/s3a/scale/ITestS3AInputStreamPerformance.java
 **/org/apache/hadoop/fs/s3a/ITestS3ARequesterPays.java
 **/org/apache/hadoop/fs/s3a/s3guard/ITestS3GuardTool.java
 **/org/apache/hadoop/fs/s3a/tools/ITestMarkerTool.java
